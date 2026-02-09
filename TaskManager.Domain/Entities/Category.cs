@@ -18,7 +18,7 @@ namespace TaskManager.Domain.Entities
 
         public void SetDescription(string description)
         {
-            if (description.Length > 150)
+            if (description?.Length > 150)
                 throw new DomainException("A descrição pode conter no máximo 150 caracteres");
 
             Description = description;
