@@ -18,9 +18,6 @@ namespace TaskManager.Domain.Entities
 
         public void SetDescription(string description)
         {
-            if (string.IsNullOrWhiteSpace(description))
-                throw new DomainException("A descrição não pode estar vazia");
-
             if (description.Length > 150)
                 throw new DomainException("A descrição pode conter no máximo 150 caracteres");
 
