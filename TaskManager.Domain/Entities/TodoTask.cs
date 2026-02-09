@@ -3,9 +3,9 @@ using TaskManager.Domain.Exceptions;
 
 namespace TaskManager.Domain.Entities
 {
-    public class Task
+    public class TodoTask
     {
-        public Task(string title, Priority priority, string description)
+        public TodoTask(string title, Priority priority, string description)
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new DomainException("O título é obrigatório.");
