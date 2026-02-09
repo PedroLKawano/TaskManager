@@ -1,4 +1,5 @@
 ﻿using TaskManager.Domain.Enums;
+using TaskManager.Domain.Exceptions;
 
 namespace TaskManager.Domain.Entities
 {
@@ -7,16 +8,16 @@ namespace TaskManager.Domain.Entities
         public Task(string title, Priority priority, string description)
         {
             if (string.IsNullOrWhiteSpace(title))
-                throw new Exception("O título é obrigatório.");
+                throw new DomainException("O título é obrigatório.");
 
-            if (title.Length < 15 || title.Length > 50)
-                throw new Exception("O título pode conter no máximo 50 caracteres.");
+            if (title.Length > 50)
+                throw new DomainException("O título pode conter no máximo 50 caracteres.");
 
             if (priority == Priority.Urgent && string.IsNullOrWhiteSpace(description))
-                throw new Exception("A descrição é obrigatória em tarefas urgentes.");
+                throw new DomainException("A descrição é obrigatória em tarefas urgentes.");
 
             if (description?.Length > 150)
-                throw new Exception("A descrição pode conter no máximo 150 caracteres");
+                throw new DomainException("A descrição pode conter no máximo 150 caracteres");
 
             Title = title;
             Priority = priority;
@@ -35,7 +36,7 @@ namespace TaskManager.Domain.Entities
         public void Start()
         {
             if (Status != Status.Pending)
-                throw new Exception("Só é possível iniciar uma tarefa pendente.");
+                throw new DomainException("Só é possível iniciar uma tarefa pendente.");
 
             Status = Status.InProgress;
         }
@@ -43,15 +44,16 @@ namespace TaskManager.Domain.Entities
         public void Complete()
         {
             if (Status != Status.InProgress)
-                throw new Exception("Só é possível completar uma tarefa em progresso.");
+                throw new DomainException("Só é possível completar uma tarefa em progresso.");
 
+            ConclusionDate = DateTime.Now;
             Status = Status.Completed;
         }
 
         public void Cancel()
         {
             if (Status == Status.Completed)
-                throw new Exception("Não é possível cancelar uma tarefa completada.");
+                throw new DomainException("Não é possível cancelar uma tarefa completada.");
 
             Status = Status.Canceled;
         }
