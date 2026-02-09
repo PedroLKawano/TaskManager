@@ -5,7 +5,7 @@ namespace TaskManager.Domain.Entities
 {
     public class TodoTask
     {
-        public TodoTask(string title, Priority priority, string description)
+        public TodoTask(string title, Priority priority, string description, Category category)
         {
             if (string.IsNullOrWhiteSpace(title))
                 throw new DomainException("O título é obrigatório.");
@@ -19,15 +19,19 @@ namespace TaskManager.Domain.Entities
             if (description?.Length > 150)
                 throw new DomainException("A descrição pode conter no máximo 150 caracteres");
 
+            if (category is null)
+                throw new DomainException("A categoria é obrigatória.");
+
             Title = title;
             Priority = priority;
             Description = description ?? string.Empty;
+            Category = category;
         }
 
         public Guid Id { get; private set; }
         public string Title { get; private set; }
         public string Description { get; private set; }
-        public Category Category { get; private set; } = new();
+        public Category Category { get; private set; }
         public DateTime CreationDate { get; private set; } = DateTime.Now;
         public DateTime? ConclusionDate { get; private set; }
         public Status Status { get; private set; } = Status.Pending;
