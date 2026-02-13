@@ -9,6 +9,9 @@ namespace TaskManager.Domain.Entities
             if (string.IsNullOrWhiteSpace(name))
                 throw new DomainException("O nome é obrigatório.");
 
+            if (name.Length > 50)
+                throw new DomainException("O nome pode conter no máximo 50 caracteres.");
+
             Name = name;
         }
 
