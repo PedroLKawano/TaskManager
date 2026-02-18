@@ -1,4 +1,3 @@
-﻿namespace TaskManager.Domain.Commands
-{
-    public record CompleteTodoTaskCommand(Guid TodoTaskId);
-}
+﻿namespace TaskManager.Domain.Commands;
+
+public record CompleteTodoTaskCommand(Guid TodoTaskId);

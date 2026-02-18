@@ -1,10 +1,9 @@
-﻿namespace TaskManager.Domain.Enums
+﻿namespace TaskManager.Domain.Enums;
+
+public enum Priority
 {
-    public enum Priority
-    {
-        Low = 0,
-        Normal = 1,
-        High = 2,
-        Urgent = 3
-    }
+    Low = 0,
+    Normal = 1,
+    High = 2,
+    Urgent = 3
 }

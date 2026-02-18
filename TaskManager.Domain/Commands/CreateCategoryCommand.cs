@@ -1,4 +1,3 @@
-﻿namespace TaskManager.Domain.Commands
-{
-    public record CreateCategoryCommand(string Name, string Description);
-}
+﻿namespace TaskManager.Domain.Commands;
+
+public record CreateCategoryCommand(string Name, string Description);

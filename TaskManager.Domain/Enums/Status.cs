@@ -1,10 +1,9 @@
-﻿namespace TaskManager.Domain.Enums
+﻿namespace TaskManager.Domain.Enums;
+
+public enum Status
 {
-    public enum Status
-    {
-        Pending = 0,
-        InProgress = 1,
-        Completed = 2,
-        Canceled = 3
-    }
+    Pending = 0,
+    InProgress = 1,
+    Completed = 2,
+    Canceled = 3
 }
