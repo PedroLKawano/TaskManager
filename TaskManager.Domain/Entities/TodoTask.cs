@@ -5,6 +5,8 @@ namespace TaskManager.Domain.Entities
 {
     public class TodoTask
     {
+        private TodoTask() { }
+
         public TodoTask(string title, Priority priority, string description, Category category)
         {
             if (string.IsNullOrWhiteSpace(title))
@@ -25,14 +27,16 @@ namespace TaskManager.Domain.Entities
             Title = title;
             Priority = priority;
             Description = description ?? string.Empty;
+            CategoryId = category.Id;
             Category = category;
         }
 
         public Guid Id { get; private set; }
-        public string Title { get; private set; }
-        public string Description { get; private set; }
-        public Category Category { get; private set; }
-        public DateTime CreationDate { get; private set; } = DateTime.Now;
+        public string Title { get; private set; } = null!;
+        public string Description { get; private set; } = null!;
+        public Guid CategoryId { get; private set; }
+        public Category Category { get; private set; } = null!;
+        public DateTime CreationDate { get; private set; } = DateTime.UtcNow;
         public DateTime? ConclusionDate { get; private set; }
         public Status Status { get; private set; } = Status.Pending;
         public Priority Priority { get; private set; }
@@ -50,7 +54,7 @@ namespace TaskManager.Domain.Entities
             if (Status != Status.InProgress)
                 throw new DomainException("Só é possível completar uma tarefa em progresso.");
 
-            ConclusionDate = DateTime.Now;
+            ConclusionDate = DateTime.UtcNow;
             Status = Status.Completed;
         }
 
