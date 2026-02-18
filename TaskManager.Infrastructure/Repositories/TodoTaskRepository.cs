@@ -12,7 +12,7 @@ public class TodoTaskRepository(TaskManagerDbContext context)
     private readonly TaskManagerDbContext _context = context;
 
     public async Task AddAsync(TodoTask task)
-        => await _context.AddAsync(task);
+        => await _context.TodoTasks.AddAsync(task);
 
     public async Task<TodoTask?> GetByIdAsync(Guid id)
         => await _context.TodoTasks
