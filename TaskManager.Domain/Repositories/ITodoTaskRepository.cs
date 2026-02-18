@@ -5,9 +5,8 @@ namespace TaskManager.Domain.Repositories;
 
 public interface ITodoTaskRepository
 {
-    void Add(TodoTask task);
-    void Update(TodoTask task);
-    void Remove(Guid id);
-    TodoTask GetById(Guid id);
-    IEnumerable<TodoTask> GetByStatus(Status status);
+    Task AddAsync(TodoTask task);
+    Task<TodoTask?> GetByIdAsync(Guid id);
+    Task<IEnumerable<TodoTask>> GetByStatusAsync(Status status);
+    void Remove(TodoTask task);
 }

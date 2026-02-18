@@ -4,9 +4,8 @@ namespace TaskManager.Domain.Repositories;
 
 public interface ICategoryRepository
 {
-    void Add(Category category);
-    void Update(Category category);
-    void Remove(Guid id);
-    Category GetById(Guid id);
-    IEnumerable<Category> GetAll();
+    Task AddAsync(Category category);    
+    Task<Category?> GetByIdAsync(Guid id);
+    Task<IEnumerable<Category>> GetAllAsync();
+    void Remove(Category category);
 }
