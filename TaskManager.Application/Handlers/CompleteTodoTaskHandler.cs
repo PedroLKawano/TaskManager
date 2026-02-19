@@ -1,20 +1,23 @@
-﻿using TaskManager.Domain.Commands;
+﻿using TaskManager.Domain.Abstractions;
+using TaskManager.Domain.Commands;
 using TaskManager.Domain.Exceptions;
 using TaskManager.Domain.Repositories;
 
 namespace TaskManager.Application.Handlers;
 
-public class CompleteTodoTaskHandler(ITodoTaskRepository repository)
+public class CompleteTodoTaskHandler(ITodoTaskRepository repository, IUnitOfWork unitOfWork)
 {
     private readonly ITodoTaskRepository _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public void Handle(CompleteTodoTaskCommand command)
+    public async Task HandleAsync(CompleteTodoTaskCommand command,
+                                  CancellationToken cancellationToken = default)
     {
-        var task = _repository.GetById(command.TodoTaskId) ??
+        var task = await _repository.GetByIdAsync(command.TodoTaskId, cancellationToken) ??
             throw new DomainException("Tarefa não encontrada.");
 
         task.Complete();
 
-        _repository.Update(task);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }
