@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TaskManager.Domain.Abstractions;
 using TaskManager.Domain.Repositories;
-using TaskManager.Domain.UnitOfWork;
 using TaskManager.Infrastructure.Persistence;
-using TaskManager.Infrastructure.Repositories;
+using TaskManager.Infrastructure.Persistence.Repositories;
 
 namespace TaskManager.Infrastructure;
 
