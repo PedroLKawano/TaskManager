@@ -2,8 +2,7 @@
 
 namespace TaskManager.Domain.Commands;
 
-public record CreateTodoTaskCommand(
-    string Title,
-    Priority Priority,
-    string Description,
-    Guid CategoryId);
+public record CreateTodoTaskCommand(string Title,
+                                    Priority Priority,
+                                    string Description,
+                                    Guid CategoryId);
