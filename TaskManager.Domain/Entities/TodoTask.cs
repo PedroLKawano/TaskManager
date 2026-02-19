@@ -24,6 +24,7 @@ public class TodoTask
         if (category is null)
             throw new DomainException("A categoria é obrigatória.");
 
+        Id = Guid.NewGuid();
         Title = title;
         Priority = priority;
         Description = description ?? string.Empty;
