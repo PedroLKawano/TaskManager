@@ -5,8 +5,9 @@ namespace TaskManager.Domain.Repositories;
 
 public interface ITodoTaskRepository
 {
-    Task AddAsync(TodoTask task);
-    Task<TodoTask?> GetByIdAsync(Guid id);
-    Task<IEnumerable<TodoTask>> GetByStatusAsync(Status status);
+    Task AddAsync(TodoTask task, CancellationToken cancellationToken = default);
+    Task<TodoTask?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<IEnumerable<TodoTask>> GetByStatusAsync(Status status,
+                                                 CancellationToken cancellationToken = default);
     void Remove(TodoTask task);
 }
