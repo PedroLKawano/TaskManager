@@ -14,6 +14,7 @@ public class Category
         if (name.Length > 50)
             throw new DomainException("O nome pode conter no máximo 50 caracteres.");
 
+        Id = Guid.NewGuid();
         Name = name;
     }
 
