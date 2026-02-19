@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Domain.UnitOfWork;
+﻿namespace TaskManager.Domain.Abstractions;
 
 public interface IUnitOfWork
 {
