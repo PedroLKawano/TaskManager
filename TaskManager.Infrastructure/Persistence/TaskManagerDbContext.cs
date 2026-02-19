@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TaskManager.Domain.Abstractions;
 using TaskManager.Domain.Entities;
-using TaskManager.Domain.UnitOfWork;
 
 namespace TaskManager.Infrastructure.Persistence;
 
