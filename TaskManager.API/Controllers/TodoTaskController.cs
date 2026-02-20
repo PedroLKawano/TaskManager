@@ -1,15 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaskManager.Application.Handlers;
 using TaskManager.Application.Queries;
+using TaskManager.Domain.Commands;
 
 namespace TaskManager.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class TodoTaskController(GetAllTodoTasksQueryHandler getAllHandler,
-                                GetTodoTaskByIdQueryHandler getByIdHandler) : ControllerBase
+                                GetTodoTaskByIdQueryHandler getByIdHandler,
+                                CreateTodoTaskHandler createHandler) : ControllerBase
 {
     private readonly GetAllTodoTasksQueryHandler _getAllHandler = getAllHandler;
     private readonly GetTodoTaskByIdQueryHandler _getByIdHandler = getByIdHandler;
+    private readonly CreateTodoTaskHandler _createHandler = createHandler;
 
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -26,5 +30,14 @@ public class TodoTaskController(GetAllTodoTasksQueryHandler getAllHandler,
         if (result is null) return NotFound();
 
         return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateTodoTaskCommand command,
+                                            CancellationToken cancellationToken)
+    {
+        var id = await _createHandler.HandleAsync(command, cancellationToken);
+
+        return CreatedAtAction(nameof(GetById), new { id }, id);
     }
 }
