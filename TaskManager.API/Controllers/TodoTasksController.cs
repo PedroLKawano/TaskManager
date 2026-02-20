@@ -7,7 +7,7 @@ namespace TaskManager.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class TodoTaskController(GetAllTodoTasksQueryHandler getAllHandler,
+public class TodoTasksController(GetAllTodoTasksQueryHandler getAllHandler,
                                 GetTodoTaskByIdQueryHandler getByIdHandler,
                                 CreateTodoTaskHandler createHandler) : ControllerBase
 {
