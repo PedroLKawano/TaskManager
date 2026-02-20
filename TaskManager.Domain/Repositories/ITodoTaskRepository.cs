@@ -9,5 +9,6 @@ public interface ITodoTaskRepository
     Task<TodoTask?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     Task<IEnumerable<TodoTask>> GetByStatusAsync(Status status,
                                                  CancellationToken cancellationToken = default);
+    Task<IEnumerable<TodoTask>> GetAllAsync(CancellationToken cancellationToken = default);
     void Remove(TodoTask task);
 }

@@ -25,9 +25,13 @@ public class TodoTaskRepository(TaskManagerDbContext context)
                                                               CancellationToken cancellationToken = default)
     {
         return await _context.TodoTasks
+            .Include(t=>t.Category)
             .Where(t => t.Status == status)
             .ToListAsync(cancellationToken);
     }
+
+    public async Task<IEnumerable<TodoTask>> GetAllAsync(CancellationToken cancellationToken = default)
+        => await _context.TodoTasks.Include(t=>t.Category).ToListAsync(cancellationToken);
 
     public void Remove(TodoTask task)
         => _context.TodoTasks.Remove(task);
