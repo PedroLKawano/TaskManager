@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TaskManager.Application.Handlers;
+using TaskManager.Application.Queries;
 
 namespace TaskManager.Application;
 
@@ -12,6 +13,9 @@ public static class DependencyInjection
         services.AddScoped<CompleteTodoTaskHandler>();
         services.AddScoped<CancelTodoTaskHandler>();
         services.AddScoped<CreateCategoryHandler>();
+
+        services.AddScoped<GetAllTodoTasksQueryHandler>();
+        services.AddScoped<GetTodoTaskByIdQueryHandler>();
 
         return services;
     }
