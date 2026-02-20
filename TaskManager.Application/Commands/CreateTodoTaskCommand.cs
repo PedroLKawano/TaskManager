@@ -1,6 +1,6 @@
 ﻿using TaskManager.Domain.Enums;
 
-namespace TaskManager.Domain.Commands;
+namespace TaskManager.Application.Commands;
 
 public record CreateTodoTaskCommand(string Title,
                                     Priority Priority,

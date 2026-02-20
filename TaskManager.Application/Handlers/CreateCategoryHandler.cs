@@ -1,5 +1,5 @@
-﻿using TaskManager.Domain.Abstractions;
-using TaskManager.Domain.Commands;
+﻿using TaskManager.Application.Commands;
+using TaskManager.Domain.Abstractions;
 using TaskManager.Domain.Entities;
 using TaskManager.Domain.Repositories;
 

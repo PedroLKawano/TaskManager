@@ -1,3 +1,3 @@
-﻿namespace TaskManager.Domain.Commands;
+﻿namespace TaskManager.Application.Commands;
 
 public record StartTodoTaskCommand(Guid TodoTaskId);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaskManager.Application.Commands;
 using TaskManager.Application.Handlers;
 using TaskManager.Application.Queries;
-using TaskManager.Domain.Commands;
 
 namespace TaskManager.API.Controllers;
 
