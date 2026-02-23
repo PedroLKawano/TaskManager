@@ -9,11 +9,13 @@ namespace TaskManager.API.Controllers;
 [Route("api/[controller]")]
 public class CategoriesController(GetAllCategoriesQueryHandler getAllHandler,
                                   GetCategoryByIdQueryHandler getByIdHandler,
-                                  CreateCategoryHandler createHandler) : ControllerBase
+                                  CreateCategoryHandler createHandler,
+                                  UpdateCategoryHandler updateCategory) : ControllerBase
 {
     private readonly GetAllCategoriesQueryHandler _getAllHandler = getAllHandler;
     private readonly GetCategoryByIdQueryHandler _getByIdHandler = getByIdHandler;
     private readonly CreateCategoryHandler _createHandler = createHandler;
+    private readonly UpdateCategoryHandler _updateCategory = updateCategory;
 
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -39,5 +41,14 @@ public class CategoriesController(GetAllCategoriesQueryHandler getAllHandler,
         var id = await _createHandler.HandleAsync(command, cancellationToken);
 
         return CreatedAtAction(nameof(GetById), new { id }, id);
+    }
+
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> Update(Guid id,
+                                            UpdateCategoryCommand command,
+                                            CancellationToken cancellationToken)
+    {
+        await _updateCategory.HandleAsync(id, command, cancellationToken);
+        return NoContent();
     }
 }

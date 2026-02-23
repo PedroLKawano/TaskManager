@@ -10,10 +10,11 @@ public class UpdateCategoryHandler(ICategoryRepository repository, IUnitOfWork u
     private readonly ICategoryRepository _repository = repository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task HandleAsync(UpdateCategoryCommand command,
+    public async Task HandleAsync(Guid id,
+                                  UpdateCategoryCommand command,
                                   CancellationToken cancellationToken = default)
     {
-        var category = await _repository.GetByIdAsync(command.Id, cancellationToken) ??
+        var category = await _repository.GetByIdAsync(id, cancellationToken) ??
             throw new DomainException("Categoria não encontrada.");
 
         category.UpdateName(command.Name);

@@ -1,3 +1,3 @@
 ﻿namespace TaskManager.Application.Commands;
 
-public record UpdateCategoryCommand(Guid Id, string Name, string? Description);
+public record UpdateCategoryCommand(string Name, string? Description);
