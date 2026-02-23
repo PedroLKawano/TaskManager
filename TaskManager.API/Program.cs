@@ -1,3 +1,4 @@
+using TaskManager.API.Middlewares;
 using TaskManager.Application;
 using TaskManager.Infrastructure;
 
@@ -19,6 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
