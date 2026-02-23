@@ -1,5 +1,4 @@
-﻿using TaskManager.Application.Commands;
-using TaskManager.Domain.Abstractions;
+﻿using TaskManager.Domain.Abstractions;
 using TaskManager.Domain.Exceptions;
 using TaskManager.Domain.Repositories;
 
@@ -10,10 +9,10 @@ public class StartTodoTaskHandler(ITodoTaskRepository repository, IUnitOfWork un
     private readonly ITodoTaskRepository _repository = repository;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-    public async Task HandleAsync(StartTodoTaskCommand command,
+    public async Task HandleAsync(Guid id,
                                   CancellationToken cancellationToken = default)
     {
-        var task = await _repository.GetByIdAsync(command.TodoTaskId, cancellationToken) ??
+        var task = await _repository.GetByIdAsync(id, cancellationToken) ??
             throw new DomainException("Tarefa não encontrada.");
         
         task.Start();
