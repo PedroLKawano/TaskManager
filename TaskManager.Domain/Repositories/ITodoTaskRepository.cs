@@ -11,4 +11,5 @@ public interface ITodoTaskRepository
                                                  CancellationToken cancellationToken = default);
     Task<IEnumerable<TodoTask>> GetAllAsync(CancellationToken cancellationToken = default);
     void Remove(TodoTask task);
+    Task<bool> ExistsByCategoryIdAsync(Guid categoryId, CancellationToken cancellationToken = default);
 }
