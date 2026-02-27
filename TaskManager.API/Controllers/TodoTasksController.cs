@@ -12,7 +12,8 @@ public class TodoTasksController(GetAllTodoTasksQueryHandler getAllHandler,
                                  CreateTodoTaskHandler createHandler,
                                  StartTodoTaskHandler startHandler,
                                  CompleteTodoTaskHandler completeHandler,
-                                 CancelTodoTaskHandler cancelHandler) : ControllerBase
+                                 CancelTodoTaskHandler cancelHandler,
+                                 DeleteTodoTaskHandler deleteHandler) : ControllerBase
 {
     private readonly GetAllTodoTasksQueryHandler _getAllHandler = getAllHandler;
     private readonly GetTodoTaskByIdQueryHandler _getByIdHandler = getByIdHandler;
@@ -20,6 +21,7 @@ public class TodoTasksController(GetAllTodoTasksQueryHandler getAllHandler,
     private readonly StartTodoTaskHandler _startHandler = startHandler;
     private readonly CompleteTodoTaskHandler _completeHandler = completeHandler;
     private readonly CancelTodoTaskHandler _cancelHandler = cancelHandler;
+    private readonly DeleteTodoTaskHandler _deleteHandler = deleteHandler;
 
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -65,6 +67,13 @@ public class TodoTasksController(GetAllTodoTasksQueryHandler getAllHandler,
     public async Task<IActionResult> Cancel(Guid id, CancellationToken cancellationToken)
     {
         await _cancelHandler.HandleAsync(id, cancellationToken);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    {
+        await _deleteHandler.HandleAsync(id, cancellationToken);
         return NoContent();
     }
 }
