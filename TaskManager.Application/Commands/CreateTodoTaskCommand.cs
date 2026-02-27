@@ -4,5 +4,5 @@ namespace TaskManager.Application.Commands;
 
 public record CreateTodoTaskCommand(string Title,
                                     Priority Priority,
-                                    string Description,
+                                    string? Description,
                                     Guid CategoryId);
