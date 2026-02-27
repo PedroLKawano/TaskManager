@@ -10,12 +10,14 @@ namespace TaskManager.API.Controllers;
 public class CategoriesController(GetAllCategoriesQueryHandler getAllHandler,
                                   GetCategoryByIdQueryHandler getByIdHandler,
                                   CreateCategoryHandler createHandler,
-                                  UpdateCategoryHandler updateCategory) : ControllerBase
+                                  UpdateCategoryHandler updateCategory,
+                                  DeleteCategoryHandler deleteHandler) : ControllerBase
 {
     private readonly GetAllCategoriesQueryHandler _getAllHandler = getAllHandler;
     private readonly GetCategoryByIdQueryHandler _getByIdHandler = getByIdHandler;
     private readonly CreateCategoryHandler _createHandler = createHandler;
     private readonly UpdateCategoryHandler _updateCategory = updateCategory;
+    private readonly DeleteCategoryHandler _deleteHandler = deleteHandler;
 
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -49,6 +51,13 @@ public class CategoriesController(GetAllCategoriesQueryHandler getAllHandler,
                                             CancellationToken cancellationToken)
     {
         await _updateCategory.HandleAsync(id, command, cancellationToken);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
+    {
+        await _deleteHandler.HandleAsync(id, cancellationToken);
         return NoContent();
     }
 }

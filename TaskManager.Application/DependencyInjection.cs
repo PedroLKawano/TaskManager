@@ -15,6 +15,7 @@ public static class DependencyInjection
 
         services.AddScoped<CreateCategoryHandler>();
         services.AddScoped<UpdateCategoryHandler>();
+        services.AddScoped<DeleteCategoryHandler>();
 
         services.AddScoped<GetAllTodoTasksQueryHandler>();
         services.AddScoped<GetTodoTaskByIdQueryHandler>();
