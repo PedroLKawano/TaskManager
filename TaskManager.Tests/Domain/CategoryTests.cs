@@ -29,12 +29,12 @@ public class CategoryTests
     [Fact]
     public void Should_Create_Valid_Category()
     {
-        //Arrange
+        //Arrange & Act
         var category = new Category("Category name");
 
-        //Act & Assert
-        category.Name.Should().Be("Category name");
+        //Assert
         category.Id.Should().NotBe(Guid.Empty);
+        category.Name.Should().Be("Category name");
     }
 
     [Fact]
