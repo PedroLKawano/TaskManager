@@ -4,7 +4,7 @@ using TaskManager.Domain.Entities;
 using TaskManager.Domain.Exceptions;
 using TaskManager.Domain.Repositories;
 
-namespace TaskManager.Application.Handlers;
+namespace TaskManager.Application.Handlers.TodoTasks;
 
 public class CreateTodoTaskHandler(ITodoTaskRepository taskRepository,
                                    ICategoryRepository categoryRepository,

@@ -2,7 +2,7 @@
 using TaskManager.Domain.Exceptions;
 using TaskManager.Domain.Repositories;
 
-namespace TaskManager.Application.Handlers;
+namespace TaskManager.Application.Handlers.Categories;
 
 public class DeleteCategoryHandler(ICategoryRepository categoryRepository,
                                    ITodoTaskRepository todoTaskRepository,

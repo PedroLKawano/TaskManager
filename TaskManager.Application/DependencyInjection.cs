@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TaskManager.Application.Handlers;
+using TaskManager.Application.Handlers.Categories;
+using TaskManager.Application.Handlers.TodoTasks;
 using TaskManager.Application.Queries;
 
 namespace TaskManager.Application;

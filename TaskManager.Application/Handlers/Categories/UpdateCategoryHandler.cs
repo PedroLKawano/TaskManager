@@ -3,7 +3,7 @@ using TaskManager.Domain.Abstractions;
 using TaskManager.Domain.Exceptions;
 using TaskManager.Domain.Repositories;
 
-namespace TaskManager.Application.Handlers;
+namespace TaskManager.Application.Handlers.Categories;
 
 public class UpdateCategoryHandler(ICategoryRepository repository, IUnitOfWork unitOfWork)
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManager.Application.Commands;
-using TaskManager.Application.Handlers;
+using TaskManager.Application.Handlers.TodoTasks;
 using TaskManager.Application.Queries;
 
 namespace TaskManager.API.Controllers;
