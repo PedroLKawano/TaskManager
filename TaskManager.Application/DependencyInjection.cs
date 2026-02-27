@@ -13,6 +13,7 @@ public static class DependencyInjection
         services.AddScoped<StartTodoTaskHandler>();
         services.AddScoped<CompleteTodoTaskHandler>();
         services.AddScoped<CancelTodoTaskHandler>();
+        services.AddScoped<DeleteTodoTaskHandler>();
 
         services.AddScoped<CreateCategoryHandler>();
         services.AddScoped<UpdateCategoryHandler>();
