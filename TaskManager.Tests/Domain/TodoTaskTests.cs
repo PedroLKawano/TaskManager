@@ -11,7 +11,7 @@ public class TodoTaskTests
     public void Should_Throw_When_Title_Is_Empty()
     {
         //Arrange
-        var action = () => new TodoTask(title: "",
+        var action = () => new TodoTask(title: string.Empty,
                                         Priority.Normal,
                                         "Description",
                                         new Category("Category name"));
@@ -39,7 +39,7 @@ public class TodoTaskTests
         //Arrange
         var action = () => new TodoTask("Task name",
                                         Priority.Urgent,
-                                        description: "",
+                                        description: string.Empty,
                                         new Category("Category name"));
 
         //Act & Assert
@@ -73,7 +73,20 @@ public class TodoTaskTests
     }
 
     [Fact]
-    public void Shoud_Create_Valid_TodoTask()
+    public void Should_Set_Description_As_Empty_String_When_It_Is_Null()
+    {
+        //Arrange & Act
+        var task = new TodoTask("Task name",
+                                Priority.Normal,
+                                description: null!,
+                                new Category("Category name"));
+
+        //Assert
+        task.Description.Should().Be(string.Empty);
+    }
+
+    [Fact]
+    public void Should_Create_Valid_TodoTask()
     {
         //Arrange & Act
         var task = new TodoTask("Task name",
@@ -88,6 +101,8 @@ public class TodoTaskTests
         task.Description.Should().Be("Description");
         task.CategoryId.Should().NotBe(Guid.Empty);
         task.Category.Should().NotBe(null);
+        task.CreationDate.Should().NotBe(DateTime.MinValue);
+        task.Status.Should().Be(Status.Pending);
     }
 
     [Fact]

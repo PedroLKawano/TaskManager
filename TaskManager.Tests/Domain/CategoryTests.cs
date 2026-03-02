@@ -10,7 +10,7 @@ public class CategoryTests
     public void Should_Throw_When_Name_Is_Empty()
     {
         //Arrange
-        var action = () => new Category("");
+        var action = () => new Category(string.Empty);
 
         //Act & Assert
         action.Should().Throw<DomainException>();
